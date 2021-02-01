@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Elif Demir/Desktop/SQL/chinook.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="5166"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="0" parent="0"/><expanded_item id="1" parent="0"/><expanded_item id="6" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,12:mainFirst_Lesson"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL Lesson 2">--SELECT COUNT(*) FROM tracks;
+
+--SELECT COUNT(composer) FROM tracks;
+
+--SELECT COUNT(DISTINCT composer) FROM tracks; 
+
+/*SELECT name, MIN(Milliseconds) AS duration
+FROM tracks;*/
+
+/*SELECT name, MAX(Milliseconds) AS duration
+FROM tracks;*/
+
+--SELECT SUM(total) From invoices;
+
+--SELECT DISTINCT strftime('%Y', InvoiceDate) FROM invoices;
+
+/*SELECT AVG(Milliseconds) FROM tracks; --393599.212103911
+
+SELECT * FROM tracks WHERE Milliseconds &gt; 393599.212103911;*/
+
+/*SELECT name, Composer, COUNT(*) FROM tracks
+WHERE Composer IS NOT NULL
+GROUP BY Composer;
+*/
+
+/*SELECT Country, COUNT(*) FROM customers 
+GROUP BY Country;
+*/
+
+/*SELECT AlbumId, MIN(Milliseconds)as Duration FROM tracks
+GROUP BY AlbumId
+ORDER BY Duration DESC;
+*/
+
+/*select BillingCountry, SUM(Total) AS total_amount 
+from invoices
+GROUP BY BillingCountry
+ORDER BY total_amount DESC;
+*/
+
+/*SELECT tracks.name as TrackName, genres.Name as GenreName
+FROM tracks
+JOIN genres ON tracks.GenreId = genres.GenreId; 
+*/
+
+/*SELECT tr.name as TrackName, gn.Name as GenreName
+FROM tracks tr
+JOIN genres gn ON tr.GenreId = gn.GenreId; 
+*/
+
+/*SELECT i.InvoiceId, c.FirstName, c.LastName
+FROM invoices i
+JOIN customers c ON i.CustomerId = c.CustomerId;
+*/
+
+/*SELECT ar.Name as ArtistName, al.Title as AlbumTitle
+FROM artists ar
+LEFT JOIN albums al ON ar.ArtistId = al.ArtistId; 
+*/
+
+SELECT inv.BillingCountry, ii.TrackId, tr.name, al.Title, ar.name
+FROM invoices inv
+INNER JOIN invoice_items ii ON inv.InvoiceId=ii.InvoiceId
+INNER JOIN tracks tr ON tr.TrackId=ii.TrackId
+INNER JOIN albums al ON al.AlbumId=tr.AlbumId
+INNER JOIN artists ar ON ar.ArtistId=al.ArtistId
+WHERE inv.BillingCountry=&quot;Germany&quot;;
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
