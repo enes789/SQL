@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Elif Demir/Desktop/SQL/chinook.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="5166"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,12:mainFirst_Lesson"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="Lesson_Exercise_3">/*SELECT TrackId, name as Trackname, AlbumId 
+FROM tracks
+WHERE AlbumId =(SELECT AlbumId FROM albums
+				WHERE Title = &quot;Faceless&quot;);
+				
+SELECT tr.TrackId, tr.name as Trackname, al.Title as AlbumTitle
+FROM tracks tr
+INNER JOIN albums al ON tr.AlbumId = al.AlbumId
+WHERE al.Title = &quot;Faceless&quot;;*/
+
+/*SELECT TrackId, name as Trackname, AlbumId 
+FROM tracks 
+WHERE AlbumId IN (SELECT AlbumId FROM albums
+				WHERE Title IN (&quot;Faceless&quot;, &quot;Let There Be Rock&quot;));
+				
+
+SELECT TrackId, name as Trackname, al.AlbumId 
+FROM tracks tr
+INNER JOIN albums al ON tr.AlbumId = al.AlbumId
+WHERE Title IN (&quot;Faceless&quot;, &quot;Let There Be Rock&quot;);*/
+
+/*CREATE TABLE vacation_name
+	(place_id INT,
+	country TEXT, --VARCHAR(50)
+	hotel_name TEXT,
+	employee_id INT,
+	vacation_length INT,
+	budget DECIMAL
+	)
+
+DROP TABLE vacation_name*/
+
+SELECT 	--tr.TrackId,
+		--tr.Name as TrackName,
+		--al.Title as AlbumTitle,
+		ar.Name as ArtistName,
+		inv.BillingCountry, 
+		SUM(Quantity) AS TotalQuantity
+FROM tracks tr
+INNER JOIN albums al on tr.AlbumId=al.AlbumId
+INNER JOIN artists ar on ar.ArtistId=al.ArtistId
+INNER JOIN invoice_items ii on ii.TrackId=tr.TrackId
+INNER JOIN invoices inv on inv.InvoiceId=ii.InvoiceId 
+WHERE inv.BillingCountry='Germany'
+--GROUP BY tr.TrackId,tr.Name,al.Title,inv.BillingCountry
+GROUP BY ar.Name
+ORDER BY TotalQuantity DESC;
+
+
+
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
